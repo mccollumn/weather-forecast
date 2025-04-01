@@ -1,0 +1,5 @@
+{
+  "$schema": "https://dev.wix.com/wix-cli/schemas/dashboard-page.json",
+  "id": "c993af2a-702b-455d-a0ba-5f57a4bf6ba0",
+  "title": "Weather Forecast"
+}

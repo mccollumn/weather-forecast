@@ -1,0 +1,5 @@
+{
+  "$schema": "https://dev.wix.com/wix-cli/schemas/wix-config.json",
+  "appId": "cc40e575-eb8a-4582-a2aa-c12f5e5978d8",
+  "projectId": "weather-forecast"
+}
