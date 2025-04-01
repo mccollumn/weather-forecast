@@ -1,0 +1,27 @@
+{
+  "$schema": "https://dev.wix.com/wix-cli/schemas/custom-element.json",
+  "id": "5755f345-7294-4b87-9de8-b1a0a14bc2a6",
+  "name": "Weather Widget",
+  "width": {
+    "defaultWidth": 450,
+    "allowStretch": true
+  },
+  "height": {
+    "defaultHeight": 250
+  },
+  "installation": {
+    "autoAddToSite": true
+  },
+  "behaviors": {
+    "dashboard": {
+      "dashboardPageComponentId": "c993af2a-702b-455d-a0ba-5f57a4bf6ba0"
+    }
+  },
+  "presets": [
+    {
+      "id": "7c55dde0-ef35-4a53-a909-39887fc42941",
+      "thumbnailUrl": "../../../../assets/weather-widget/thumbnail.png"
+    }
+  ]
+}
+
