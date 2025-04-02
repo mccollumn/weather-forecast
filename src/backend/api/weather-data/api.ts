@@ -17,20 +17,27 @@ function MyComponent() {
 };
 */
 
+import { auth } from "@wix/essentials";
 import { secrets } from "@wix/secrets";
 import { WEATHER_API_URL } from "../../../consts";
 
 async function getSecretValue(name: string) {
-  const response = await secrets.getSecretValue(name);
+  try {
+    const elevatedGetSecretValue = auth.elevate(secrets.getSecretValue);
+    const response = await elevatedGetSecretValue(name);
+    return response.value;
+  } catch (error) {
+    console.error("Error retrieving secret:", error);
+    return null;
+  }
 }
-export async function GET(
-  // req: Request,
-  { params }: { params: { id: string } }
-) {
+
+export async function POST(req: Request) {
   try {
     const apiKey = await getSecretValue("API_KEY");
-    const paramsString = new URLSearchParams(params).toString();
-    const url = `${WEATHER_API_URL}${paramsString}$&key=${apiKey}`;
+    const { location, tempScale } = await req.json();
+    const url = `${WEATHER_API_URL}${location}/next5days?key=${apiKey}&contentType=json&unitGroup=${tempScale}&include=days`;
+
     const response = await fetch(url);
     if (!response.ok) {
       throw new Error(`Failed to fetch data: ${response.statusText}`);
@@ -42,9 +49,3 @@ export async function GET(
     return new Response("Failed to fetch weather data", { status: 500 });
   }
 }
-
-// export async function POST(req: Request) {
-//   const data = await req.json();
-//   console.log("Log POST with body:", data);
-//   return Response.json(data);
-// }
