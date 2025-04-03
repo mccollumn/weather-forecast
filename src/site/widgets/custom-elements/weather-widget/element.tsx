@@ -14,8 +14,9 @@ interface Props {
 }
 
 const CustomElement: FC<Props> = ({ displayName = `Weather Forecast` }) => {
-  const [data, setData] = React.useState<any>(sampleData);
-  // const [data, setData] = React.useState<any>(null);
+  // const [data, setData] = React.useState<any>(sampleData);
+  const [data, setData] = React.useState<any>(null);
+  const [isLoading, setIsLoading] = React.useState(false);
   // TODO: Probably need to set tempScale state here instead of in the form
   const [tempScale, setTempScale] = React.useState<TempScale>("us");
 
@@ -44,10 +45,19 @@ const CustomElement: FC<Props> = ({ displayName = `Weather Forecast` }) => {
     <div className={styles.root}>
       <Layout gap="20px">
         <Cell span={6}>
-          <Form title={displayName} setData={setData} />
+          <Form
+            title={displayName}
+            setData={setData}
+            isLoading={isLoading}
+            setIsLoading={setIsLoading}
+          />
         </Cell>
         <Cell span={6}>
-          <WeatherPanel weatherData={data} tempScale={tempScale} />
+          <WeatherPanel
+            weatherData={data}
+            tempScale={tempScale}
+            isLoading={isLoading}
+          />
         </Cell>
       </Layout>
     </div>

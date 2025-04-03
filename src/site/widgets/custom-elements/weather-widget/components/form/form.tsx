@@ -11,10 +11,16 @@ import { TempScale } from "@/types";
 interface FormProps {
   title: string;
   setData: (data: any) => void;
+  isLoading: boolean;
+  setIsLoading: (isLoading: boolean) => void;
 }
 
-export const Form = ({ title, setData }: FormProps) => {
-  const [isLoading, setIsLoading] = React.useState(false);
+export const Form = ({
+  title,
+  setData,
+  isLoading,
+  setIsLoading,
+}: FormProps) => {
   const [isError, setIsError] = React.useState(false);
   const [location, setLocation] = React.useState("");
   const [tempScale, setTempScale] = React.useState<TempScale>("us");

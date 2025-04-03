@@ -2,14 +2,23 @@ import React from "react";
 import { Box, EmptyState } from "@wix/design-system";
 import { CurrentWeather } from "./currentWeather";
 import { Forecast } from "./forecast";
+import { LoaderComponent as Loader } from "../loader";
 import { WeatherData } from "@/types";
 
 interface WeatherPanelProps {
   weatherData: WeatherData;
   tempScale: "us" | "metric";
+  isLoading?: boolean;
 }
 
-export const WeatherPanel = ({ weatherData, tempScale }: WeatherPanelProps) => {
+export const WeatherPanel = ({
+  weatherData,
+  tempScale,
+  isLoading,
+}: WeatherPanelProps) => {
+  if (isLoading) {
+    return <Loader />;
+  }
   if (!weatherData || !weatherData.days) {
     return <EmptyState />;
   }
