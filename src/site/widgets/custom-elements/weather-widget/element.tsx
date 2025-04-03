@@ -14,8 +14,8 @@ interface Props {
 }
 
 const CustomElement: FC<Props> = ({ displayName = `Weather Forecast` }) => {
-  // const [data, setData] = React.useState<any>(sampleData);
-  const [data, setData] = React.useState<any>(null);
+  const [data, setData] = React.useState<any>(sampleData);
+  // const [data, setData] = React.useState<any>(null);
   // TODO: Probably need to set tempScale state here instead of in the form
   const [tempScale, setTempScale] = React.useState<TempScale>("us");
 

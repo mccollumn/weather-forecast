@@ -1,5 +1,6 @@
 import React from "react";
 import { Heading, Box } from "@wix/design-system";
+import { FavoriteLocation } from "./favoriteLocation";
 
 export const CityHeading = ({ cityName }: { cityName: string }) => {
   return (
@@ -7,6 +8,7 @@ export const CityHeading = ({ cityName }: { cityName: string }) => {
       <Heading size="small" weight="bold" ellipsis>
         {cityName}
       </Heading>
+      <FavoriteLocation currentLocation={cityName} />
     </Box>
   );
 };
