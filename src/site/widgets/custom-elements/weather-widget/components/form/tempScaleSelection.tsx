@@ -14,7 +14,6 @@ export const TempScaleSelection = ({
     value: string
   ) => void = (_, value) => {
     setTempScale(value as TempScale);
-    console.log("Selected temperature scale:", value);
   };
 
   return (

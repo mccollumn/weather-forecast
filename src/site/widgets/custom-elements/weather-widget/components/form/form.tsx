@@ -1,6 +1,5 @@
 import React from "react";
 import { Box, Heading, Divider } from "@wix/design-system";
-// import { ToastComponent } from "./components/toast";
 import { Toast } from "../toast";
 import { getData } from "../../utils";
 import { GetWeatherButton } from "./getWeatherButton";
@@ -30,14 +29,9 @@ export const Form = ({
   const [hasSubmitted, setHasSubmitted] = React.useState(false);
 
   const loadWeatherData = async () => {
-    console.log("Location:", location);
-    console.log("Temperature Scale:", tempScale);
-
     setIsLoading(true);
     const res = await getData(location, tempScale);
-    console.log("res", res);
     if (!res.ok) {
-      // TODO: Test this toast after deploy. Documentation says it won't work in dev.
       <Toast
         message="Could not retreive weather for that location."
         type="error"
@@ -46,7 +40,6 @@ export const Form = ({
       return;
     }
     setData(await res.json());
-    console.log("Form submitted");
     setIsLoading(false);
   };
 
@@ -56,6 +49,7 @@ export const Form = ({
       setIsError(true);
       return;
     }
+    setIsError(false);
     loadWeatherData();
     setHasSubmitted(true);
   };

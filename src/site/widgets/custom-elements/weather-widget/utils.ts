@@ -4,7 +4,6 @@ import { TempScale } from "@/types";
 
 export const getFavoriteLocation = async () => {
   try {
-    // TODO: This fails in dev. Hoping it works in prod.
     const favoriteLocation = await local.getItem("favoriteLocation");
     return favoriteLocation;
   } catch (error) {

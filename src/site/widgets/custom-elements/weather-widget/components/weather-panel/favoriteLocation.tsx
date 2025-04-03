@@ -18,9 +18,6 @@ export const FavoriteLocation = ({
     string | null
   >(null);
 
-  console.log("favoriteLocation", favoriteLocation);
-  console.log("currentLocation", currentLocation);
-
   const handleClick = async () => {
     if (isFavorite) {
       await removeFavoriteLocation();
