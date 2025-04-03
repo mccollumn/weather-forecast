@@ -13,6 +13,8 @@ interface FormProps {
   setData: (data: any) => void;
   isLoading: boolean;
   setIsLoading: (isLoading: boolean) => void;
+  tempScale: TempScale;
+  setTempScale: (tempScale: TempScale) => void;
 }
 
 export const Form = ({
@@ -20,19 +22,16 @@ export const Form = ({
   setData,
   isLoading,
   setIsLoading,
+  tempScale,
+  setTempScale,
 }: FormProps) => {
   const [isError, setIsError] = React.useState(false);
   const [location, setLocation] = React.useState("");
-  const [tempScale, setTempScale] = React.useState<TempScale>("us");
+  const [hasSubmitted, setHasSubmitted] = React.useState(false);
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const loadWeatherData = async () => {
     console.log("Location:", location);
     console.log("Temperature Scale:", tempScale);
-    if (!location) {
-      setIsError(true);
-      return;
-    }
 
     setIsLoading(true);
     const res = await getData(location, tempScale);
@@ -50,6 +49,22 @@ export const Form = ({
     console.log("Form submitted");
     setIsLoading(false);
   };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!location) {
+      setIsError(true);
+      return;
+    }
+    loadWeatherData();
+    setHasSubmitted(true);
+  };
+
+  React.useEffect(() => {
+    if (location && hasSubmitted) {
+      loadWeatherData();
+    }
+  }, [tempScale]);
 
   return (
     <Box direction="vertical" gap="20px" align="center">

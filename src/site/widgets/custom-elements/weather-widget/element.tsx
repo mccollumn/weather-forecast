@@ -17,7 +17,6 @@ const CustomElement: FC<Props> = ({ displayName = `Weather Forecast` }) => {
   // const [data, setData] = React.useState<any>(sampleData);
   const [data, setData] = React.useState<any>(null);
   const [isLoading, setIsLoading] = React.useState(false);
-  // TODO: Probably need to set tempScale state here instead of in the form
   const [tempScale, setTempScale] = React.useState<TempScale>("us");
 
   React.useEffect(() => {
@@ -50,6 +49,8 @@ const CustomElement: FC<Props> = ({ displayName = `Weather Forecast` }) => {
             setData={setData}
             isLoading={isLoading}
             setIsLoading={setIsLoading}
+            tempScale={tempScale}
+            setTempScale={setTempScale}
           />
         </Cell>
         <Cell span={6}>
