@@ -1,8 +1,9 @@
 import React from "react";
 import { SegmentedToggle } from "@wix/design-system";
+import { TempScale } from "@/types";
 
 interface TempScaleSelectionProps {
-  setTempScale: (value: string) => void;
+  setTempScale: (value: TempScale) => void;
 }
 
 export const TempScaleSelection = ({
@@ -12,7 +13,7 @@ export const TempScaleSelection = ({
     event: React.SyntheticEvent,
     value: string
   ) => void = (_, value) => {
-    setTempScale(value);
+    setTempScale(value as TempScale);
     console.log("Selected temperature scale:", value);
   };
 

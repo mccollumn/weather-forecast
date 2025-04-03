@@ -1,11 +1,12 @@
 import React from "react";
-import { httpClient } from "@wix/essentials";
 import { Box, Heading, Divider } from "@wix/design-system";
 // import { ToastComponent } from "./components/toast";
 import { Toast } from "../toast";
+import { getData } from "../../utils";
 import { GetWeatherButton } from "./getWeatherButton";
 import { LocationInput } from "./locationInput";
 import { TempScaleSelection } from "./tempScaleSelection";
+import { TempScale } from "@/types";
 
 interface FormProps {
   title: string;
@@ -16,7 +17,7 @@ export const Form = ({ title, setData }: FormProps) => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [isError, setIsError] = React.useState(false);
   const [location, setLocation] = React.useState("");
-  const [tempScale, setTempScale] = React.useState("us");
+  const [tempScale, setTempScale] = React.useState<TempScale>("us");
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -28,16 +29,7 @@ export const Form = ({ title, setData }: FormProps) => {
     }
 
     setIsLoading(true);
-    const res = await httpClient.fetchWithAuth(
-      `${import.meta.env.BASE_API_URL}/weather-data`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ location, tempScale }),
-      }
-    );
+    const res = await getData(location, tempScale);
     console.log("res", res);
     if (!res.ok) {
       // TODO: Test this toast after deploy. Documentation says it won't work in dev.
@@ -54,7 +46,7 @@ export const Form = ({ title, setData }: FormProps) => {
   };
 
   return (
-    <Box direction="vertical" gap="20px" align="center" padding="20px">
+    <Box direction="vertical" gap="20px" align="center">
       <Heading>{title}</Heading>
       <Divider />
       <form onSubmit={handleSubmit}>

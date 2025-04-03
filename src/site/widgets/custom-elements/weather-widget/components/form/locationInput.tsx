@@ -15,7 +15,7 @@ export const LocationInput = ({
   isError = false,
 }: LocationInputProps) => {
   return (
-    <Box direction="vertical" width="275px" align="center">
+    <Box direction="vertical" width="100%" align="center">
       <FormField
         status={isError ? "warning" : undefined}
         statusMessage={isError ? "Please enter a location" : undefined}
