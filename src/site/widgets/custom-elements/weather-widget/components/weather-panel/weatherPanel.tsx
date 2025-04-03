@@ -4,6 +4,7 @@ import { CurrentWeather } from "./currentWeather";
 import { Forecast } from "./forecast";
 import { LoaderComponent as Loader } from "../loader";
 import { WeatherData } from "@/types";
+import styles from "../../element.module.css";
 
 interface WeatherPanelProps {
   weatherData: WeatherData;
@@ -32,13 +33,15 @@ export const WeatherPanel = ({
   }
 
   return (
-    <Box direction="vertical" gap="10px" width="100%" height="100%">
-      <CurrentWeather
-        weatherData={currentWeather}
-        city={city}
-        tempScale={tempScale}
-      />
-      <Forecast weatherDataDaily={days} />
-    </Box>
+    <div className={styles.showAnimation}>
+      <Box direction="vertical" gap="10px" width="100%" height="100%">
+        <CurrentWeather
+          weatherData={currentWeather}
+          city={city}
+          tempScale={tempScale}
+        />
+        <Forecast weatherDataDaily={days} />
+      </Box>
+    </div>
   );
 };

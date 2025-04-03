@@ -14,3 +14,18 @@
   padding: 3rem 1rem;
   font-size: 14px;
 }
+
+.showAnimation {
+  animation: slide-in 2s ease-in;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

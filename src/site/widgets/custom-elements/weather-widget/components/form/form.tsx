@@ -73,7 +73,7 @@ export const Form = ({
       <form onSubmit={handleSubmit}>
         <Box direction="vertical" gap="20px" width="100%">
           <LocationInput
-            location={location}
+            location={hasSubmitted ? "" : location}
             setLocation={setLocation}
             isError={isError}
           />
